@@ -1,146 +1,146 @@
 package endpoints.common
 
-import endpoints.users.dto.resposne.UserResponse
+import endpoints.users.dto.response.UserResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class RichTextObjectResponse {
-	@SerialName("plain_text")
-	abstract val plainText: String
+    @SerialName("plain_text")
+    abstract val plainText: String
 
-	abstract val href: String?
+    abstract val href: String?
 
-	abstract val annotations: Annotations
+    abstract val annotations: Annotations
 
-	abstract val type: RichTextObjectType
+    abstract val type: RichTextObjectType
 
-	@Serializable
-	@SerialName("text")
-	data class Text(
-		override val plainText: String,
-		override val href: String?,
-		override val annotations: Annotations,
-		override val type: RichTextObjectType = RichTextObjectType.TEXT,
+    @Serializable
+    @SerialName("text")
+    data class Text(
+        override val plainText: String,
+        override val href: String?,
+        override val annotations: Annotations,
+        override val type: RichTextObjectType = RichTextObjectType.TEXT,
 
-		val text: TextObject
-	) : RichTextObjectResponse()
+        val text: TextObject
+    ) : RichTextObjectResponse()
 
-	@Serializable
-	@SerialName("mention")
-	data class Mention(
-		override val plainText: String,
-		override val href: String?,
-		override val annotations: Annotations,
-		override val type: RichTextObjectType = RichTextObjectType.TEXT,
+    @Serializable
+    @SerialName("mention")
+    data class Mention(
+        override val plainText: String,
+        override val href: String?,
+        override val annotations: Annotations,
+        override val type: RichTextObjectType = RichTextObjectType.TEXT,
 
-		val mention: MentionObject
-	) : RichTextObjectResponse()
+        val mention: MentionObject
+    ) : RichTextObjectResponse()
 
-	@Serializable
-	@SerialName("equation")
-	data class Equation(
-		override val plainText: String,
-		override val href: String?,
-		override val annotations: Annotations,
-		override val type: RichTextObjectType = RichTextObjectType.EQUATION,
+    @Serializable
+    @SerialName("equation")
+    data class Equation(
+        override val plainText: String,
+        override val href: String?,
+        override val annotations: Annotations,
+        override val type: RichTextObjectType = RichTextObjectType.EQUATION,
 
-		val expression: String
-	) : RichTextObjectResponse()
+        val expression: String
+    ) : RichTextObjectResponse()
 }
 
 @Serializable
 enum class RichTextObjectType {
-	@SerialName("text")
-	TEXT,
+    @SerialName("text")
+    TEXT,
 
-	@SerialName("mention")
-	MENTION,
+    @SerialName("mention")
+    MENTION,
 
-	@SerialName("equation")
-	EQUATION,
+    @SerialName("equation")
+    EQUATION,
 }
 
 @Serializable
 data class TextObject(
-	val context: String,
-	val link: Link?,
+    val context: String,
+    val link: Link?,
 )
 
 @Serializable
 data class Link(
-	val type: String = "url"
+    val type: String = "url"
 )
 
 @Serializable
 sealed class MentionObject {
-	abstract val type: MentionObjectType
+    abstract val type: MentionObjectType
 
-	@Serializable
-	@SerialName("user")
-	data class User(
-		override val type: MentionObjectType = MentionObjectType.USER,
+    @Serializable
+    @SerialName("user")
+    data class User(
+        override val type: MentionObjectType = MentionObjectType.USER,
 
-		val user: UserResponse
-	) : MentionObject()
+        val user: UserResponse
+    ) : MentionObject()
 
-	@Serializable
-	@SerialName("page")
-	data class Page(
-		override val type: MentionObjectType = MentionObjectType.PAGE,
+    @Serializable
+    @SerialName("page")
+    data class Page(
+        override val type: MentionObjectType = MentionObjectType.PAGE,
 
-		val page: MentionPageObject
-	) : MentionObject()
+        val page: MentionPageObject
+    ) : MentionObject()
 
-	@Serializable
-	@SerialName("database")
-	data class Database(
-		override val type: MentionObjectType = MentionObjectType.DATABASE,
+    @Serializable
+    @SerialName("database")
+    data class Database(
+        override val type: MentionObjectType = MentionObjectType.DATABASE,
 
-		val database: MentionDatabaseObject
-	) : MentionObject()
+        val database: MentionDatabaseObject
+    ) : MentionObject()
 
-	@Serializable
-	@SerialName("date")
-	data class Date(
-		override val type: MentionObjectType = MentionObjectType.DATE,
+    @Serializable
+    @SerialName("date")
+    data class Date(
+        override val type: MentionObjectType = MentionObjectType.DATE,
 
-		val date: DateObject
-	) : MentionObject()
+        val date: DateObject
+    ) : MentionObject()
 
-	@Serializable
-	@SerialName("link_preview")
-	data class LinkPreview(
-		override val type: MentionObjectType = MentionObjectType.LINK_PREVIEW,
+    @Serializable
+    @SerialName("link_preview")
+    data class LinkPreview(
+        override val type: MentionObjectType = MentionObjectType.LINK_PREVIEW,
 
-		val url: String
-	) : MentionObject()
+        val url: String
+    ) : MentionObject()
 }
 
 @Serializable
 enum class MentionObjectType {
-	@SerialName("user")
-	USER,
+    @SerialName("user")
+    USER,
 
-	@SerialName("page")
-	PAGE,
+    @SerialName("page")
+    PAGE,
 
-	@SerialName("database")
-	DATABASE,
+    @SerialName("database")
+    DATABASE,
 
-	@SerialName("date")
-	DATE,
+    @SerialName("date")
+    DATE,
 
-	@SerialName("link_preview")
-	LINK_PREVIEW
+    @SerialName("link_preview")
+    LINK_PREVIEW
 }
 
 @Serializable
 data class MentionPageObject(
-	val id: String,
+    val id: String,
 )
 
 @Serializable
 data class MentionDatabaseObject(
-	val id: String,
+    val id: String,
 )
