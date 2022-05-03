@@ -15,8 +15,6 @@ sealed class BlockResponse {
 
 	abstract val id: String
 
-	abstract val type: String
-
 	@SerialName("created_time")
 	abstract val createdTime: String
 
@@ -34,17 +32,24 @@ sealed class BlockResponse {
 	@SerialName("has_children")
 	abstract val hasChildren: Boolean
 
+	abstract val type: String
+
 	@Serializable
 	@SerialName("paragraph")
 	data class Paragraph(
 		override val id: String,
-		override val type: String = "paragraph",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "paragraph",
 
 		val paragraph: ParagraphType
 	) : BlockResponse()
@@ -53,13 +58,18 @@ sealed class BlockResponse {
 	@SerialName("heading_1")
 	data class Heading_1(
 		override val id: String,
-		override val type: String = "heading_1",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "heading_1",
 
 		@SerialName("heading_1") val heading1: HeadingType
 	) : BlockResponse()
@@ -68,13 +78,18 @@ sealed class BlockResponse {
 	@SerialName("heading_2")
 	data class Heading_2(
 		override val id: String,
-		override val type: String = "heading_2",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "heading_2",
 
 		@SerialName("heading_2") val heading2: HeadingType
 	) : BlockResponse()
@@ -83,13 +98,18 @@ sealed class BlockResponse {
 	@SerialName("heading_3")
 	data class Heading_3(
 		override val id: String,
-		override val type: String = "heading_3",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "heading_3",
 
 		@SerialName("heading_3") val heading3: HeadingType
 	) : BlockResponse()
@@ -98,13 +118,18 @@ sealed class BlockResponse {
 	@SerialName("callout")
 	data class Callout(
 		override val id: String,
-		override val type: String = "callout",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "callout",
 
 		val callout: CalloutType
 	) : BlockResponse()
@@ -113,13 +138,18 @@ sealed class BlockResponse {
 	@SerialName("quote")
 	data class Quote(
 		override val id: String,
-		override val type: String = "quote",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "quote",
 
 		val quote: QuoteType
 	) : BlockResponse()
@@ -128,13 +158,18 @@ sealed class BlockResponse {
 	@SerialName("bulleted_list_item")
 	data class BulletedListItem(
 		override val id: String,
-		override val type: String = "bulleted_list_item",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "bulleted_list_item",
 
 		@SerialName("bulleted_list_item") val bulletedListItem: BulletedListItemType
 	) : BlockResponse()
@@ -143,13 +178,18 @@ sealed class BlockResponse {
 	@SerialName("numbered_list_item")
 	data class NumberedListItem(
 		override val id: String,
-		override val type: String = "numbered_list_item",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "numbered_list_item",
 
 		val numberedListItem: NumberedListItemType
 	) : BlockResponse()
@@ -158,13 +198,18 @@ sealed class BlockResponse {
 	@SerialName("to_do")
 	data class ToDo(
 		override val id: String,
-		override val type: String = "to_do",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "to_do",
 
 		@SerialName("to_do") val toDO: ToDoType
 	) : BlockResponse()
@@ -173,13 +218,18 @@ sealed class BlockResponse {
 	@SerialName("toggle")
 	data class Toggle(
 		override val id: String,
-		override val type: String = "toggle",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "toggle",
 
 		val toggle: ToggleType
 	) : BlockResponse()
@@ -188,13 +238,18 @@ sealed class BlockResponse {
 	@SerialName("code")
 	data class Code(
 		override val id: String,
-		override val type: String = "code",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "code",
 
 		val code: CodeType
 	) : BlockResponse()
@@ -204,13 +259,18 @@ sealed class BlockResponse {
 	@SerialName("child_page")
 	data class ChildPage(
 		override val id: String,
-		override val type: String = "child_page",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "child_page",
 
 		val chilePage: ChildPageType
 	) : BlockResponse()
@@ -219,13 +279,18 @@ sealed class BlockResponse {
 	@SerialName("child_database")
 	data class ChildDatabase(
 		override val id: String,
-		override val type: String = "child_database",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "child_database",
 
 		@SerialName("child_database")
 		val childDatabase: ChildDatabaseType
@@ -235,13 +300,18 @@ sealed class BlockResponse {
 	@SerialName("embed")
 	data class Embed(
 		override val id: String,
-		override val type: String = "embed",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "embed",
 
 		val embed: EmbedType
 	) : BlockResponse()
@@ -250,13 +320,18 @@ sealed class BlockResponse {
 	@SerialName("image")
 	data class Image(
 		override val id: String,
-		override val type: String = "image",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "image",
 
 		val image: ImageType
 	) : BlockResponse()
@@ -265,13 +340,18 @@ sealed class BlockResponse {
 	@SerialName("video")
 	data class Video(
 		override val id: String,
-		override val type: String = "video",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "video",
 
 		val video: VideoType
 	) : BlockResponse()
@@ -280,13 +360,18 @@ sealed class BlockResponse {
 	@SerialName("file")
 	data class File(
 		override val id: String,
-		override val type: String = "file",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "file",
 
 		val file: FileType
 	) : BlockResponse()
@@ -295,13 +380,18 @@ sealed class BlockResponse {
 	@SerialName("pdf")
 	data class Pdf(
 		override val id: String,
-		override val type: String = "pdf",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "pdf",
 
 		val pdf: PdfType
 	) : BlockResponse()
@@ -310,13 +400,18 @@ sealed class BlockResponse {
 	@SerialName("bookmark")
 	data class Bookmark(
 		override val id: String,
-		override val type: String = "bookmark",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "bookmark",
 
 		val bookmark: BookmarkType
 	) : BlockResponse()
@@ -325,13 +420,18 @@ sealed class BlockResponse {
 	@SerialName("equation")
 	data class Equation(
 		override val id: String,
-		override val type: String = "equation",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "equation",
 
 		val equation: EquationType
 	) : BlockResponse()
@@ -340,13 +440,18 @@ sealed class BlockResponse {
 	@SerialName("divider")
 	data class Divider(
 		override val id: String,
-		override val type: String = "divider",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "divider",
 
 		val divider: DividerType
 	) : BlockResponse()
@@ -355,13 +460,18 @@ sealed class BlockResponse {
 	@SerialName("table_of_contents")
 	data class TableOfContents(
 		override val id: String,
-		override val type: String = "table_of_contents",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "table_of_contents",
 
 		@SerialName("table_of_contents")
 		val TableOfContents: TableOfContentsType
@@ -371,13 +481,18 @@ sealed class BlockResponse {
 	@SerialName("breadcrumb")
 	data class Breadcrumb(
 		override val id: String,
-		override val type: String = "breadcrumb",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "breadcrumb",
 
 		val breadcrumb: BreadcrumbType
 	) : BlockResponse()
@@ -386,13 +501,18 @@ sealed class BlockResponse {
 	@SerialName("column_list")
 	data class ColumnList(
 		override val id: String,
-		override val type: String = "column_list",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "column_list",
 
 		@SerialName("column_list")
 		val ColumnList: ColumnListType
@@ -402,13 +522,18 @@ sealed class BlockResponse {
 	@SerialName("column")
 	data class Column(
 		override val id: String,
-		override val type: String = "column",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "column",
 
 		val column: ColumnType
 	) : BlockResponse()
@@ -417,13 +542,18 @@ sealed class BlockResponse {
 	@SerialName("link_preview")
 	data class LinkPreview(
 		override val id: String,
-		override val type: String = "link_preview",
+		@SerialName("created_time")
 		override val createdTime: String,
+		@SerialName("created_by")
 		override val createdBy: PartialUserResponse,
+		@SerialName("last_edited_time")
 		override val lastEditedTime: String,
+		@SerialName("last_edited_by")
 		override val lastEditedBy: PartialUserResponse,
-		override val archived: Boolean,
+		@SerialName("has_children")
 		override val hasChildren: Boolean,
+		override val archived: Boolean,
+		override val type: String = "link_preview",
 
 		@SerialName("link_preview")
 		val LinkPreview: LinkPreviewType
@@ -477,7 +607,7 @@ sealed class BlockResponse {
 	@SerialName("table_row")
 	data class TableRow(
 		val type: String = "table_row",
-		
+
 		@SerialName("table_row")
 		val tableRow: TableRowType
 	)
@@ -488,7 +618,7 @@ data class ParagraphType(
 	@SerialName("rich_text")
 	val richText: List<RichTextObjectResponse>,
 	val color: Color = Color.DEFAULT,
-	val children: List<BlockResponse>
+	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
 
 @Serializable
@@ -504,7 +634,7 @@ data class CalloutType(
 	val richText: List<RichTextObjectResponse>,
 	val icon: IconObject,
 	val color: Color = Color.DEFAULT,
-	val children: List<BlockResponse>
+	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
 
 @Serializable
@@ -512,7 +642,7 @@ data class QuoteType(
 	@SerialName("rich_text")
 	val richText: List<RichTextObjectResponse>,
 	val color: Color = Color.DEFAULT,
-	val children: List<BlockResponse>
+	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
 
 @Serializable
@@ -520,7 +650,7 @@ data class BulletedListItemType(
 	@SerialName("rich_text")
 	val richText: List<RichTextObjectResponse>,
 	val color: Color = Color.DEFAULT,
-	val children: List<BlockResponse>
+	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
 
 @Serializable
@@ -528,7 +658,7 @@ data class NumberedListItemType(
 	@SerialName("rich_text")
 	val richText: List<RichTextObjectResponse>,
 	val color: Color = Color.DEFAULT,
-	val children: List<BlockResponse>
+	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
 
 @Serializable
@@ -537,7 +667,7 @@ data class ToDoType(
 	val richText: List<RichTextObjectResponse>,
 	val checked: Boolean = false,
 	val color: Color = Color.DEFAULT,
-	val children: List<BlockResponse>
+	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
 
 @Serializable
@@ -545,7 +675,7 @@ data class ToggleType(
 	@SerialName("rich_text")
 	val richText: List<RichTextObjectResponse>,
 	val color: Color = Color.DEFAULT,
-	val children: List<BlockResponse>
+	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
 
 @Serializable
@@ -659,7 +789,7 @@ sealed class LinkToPageType {
 
 @Serializable
 data class SyncedOriginalType(
-	val children: List<BlockResponse>
+	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
 
 @Serializable
@@ -685,7 +815,7 @@ data class TableType(
 	@SerialName("has_row_header")
 	val hasRowHeader: Boolean,
 
-	val children: List<TableRowType>
+	val children: List<TableRowType>? = ArrayList<TableRowType>()
 )
 
 @Serializable
