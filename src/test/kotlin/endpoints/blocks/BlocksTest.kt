@@ -16,8 +16,9 @@ class BlocksTest {
 	@DisplayName("[Blocks] Retrieve paragraph block")
 	fun getParagraphBlock() {
 		val result = runBlocking {
-			blocks.retrieve(BlockRetrieveRequest(Config.Block.ParagraphId))
+			blocks.retrieve(BlockRetrieveRequest(Config.Block.paragraphId))
 		}
+
 		result shouldNotBe null
 		result is BlockResponse
 	}
@@ -26,8 +27,9 @@ class BlocksTest {
 	@DisplayName("[Blocks] Retrieve todo block")
 	fun getTodoBlock() {
 		val result = runBlocking {
-			blocks.retrieve(BlockRetrieveRequest(Config.Block.TodoId))
+			blocks.retrieve(BlockRetrieveRequest(Config.Block.todoId))
 		}
+
 		result shouldNotBe null
 		result is BlockResponse
 	}
@@ -36,8 +38,9 @@ class BlocksTest {
 	@DisplayName("[Blocks] Retrieve code block")
 	fun getCodeBlock() {
 		val result = runBlocking {
-			blocks.retrieve(BlockRetrieveRequest(Config.Block.CodeId))
+			blocks.retrieve(BlockRetrieveRequest(Config.Block.codeId))
 		}
+
 		result shouldNotBe null
 		result is BlockResponse
 	}
@@ -46,10 +49,10 @@ class BlocksTest {
 	@DisplayName("[Blocks] Retrieve quote block")
 	fun getQuoteBlock() {
 		val result = runBlocking {
-			blocks.retrieve(BlockRetrieveRequest(Config.Block.QuoteId))
+			blocks.retrieve(BlockRetrieveRequest(Config.Block.quoteId))
 		}
+
 		result shouldNotBe null
 		result is BlockResponse
 	}
-
 }

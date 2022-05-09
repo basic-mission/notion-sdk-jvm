@@ -1,20 +1,13 @@
 object Config {
-	const val notionApiKey: String =
-		"" // set notionApiKey for testing
+	const val notionApiKey: String = "" // set notionApiKey for testing
 
 	object Block {                                               // set BlockId for testing
-		const val ParagraphId: String =
-			""
+		const val paragraphId: String = ""
 
-		const val TodoId: String =
-			""
+		const val todoId: String = ""
 
-		const val CodeId: String =
-			""
+		const val codeId: String = ""
 
-		const val QuoteId: String =
-			""
+		const val quoteId: String = ""
 	}
 }
-
-
