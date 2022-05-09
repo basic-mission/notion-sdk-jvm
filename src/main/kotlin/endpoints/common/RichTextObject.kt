@@ -1,6 +1,6 @@
 package endpoints.common
 
-import endpoints.users.dto.resposne.UserResponse
+import endpoints.users.dto.response.UserResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,6 +18,7 @@ sealed class RichTextObjectResponse {
 	@Serializable
 	@SerialName("text")
 	data class Text(
+		@SerialName("plain_text")
 		override val plainText: String,
 		override val href: String?,
 		override val annotations: Annotations,
@@ -29,6 +30,7 @@ sealed class RichTextObjectResponse {
 	@Serializable
 	@SerialName("mention")
 	data class Mention(
+		@SerialName("plain_text")
 		override val plainText: String,
 		override val href: String?,
 		override val annotations: Annotations,
@@ -40,6 +42,7 @@ sealed class RichTextObjectResponse {
 	@Serializable
 	@SerialName("equation")
 	data class Equation(
+		@SerialName("plain_text")
 		override val plainText: String,
 		override val href: String?,
 		override val annotations: Annotations,
@@ -63,7 +66,7 @@ enum class RichTextObjectType {
 
 @Serializable
 data class TextObject(
-	val context: String,
+	val content: String,
 	val link: Link?,
 )
 

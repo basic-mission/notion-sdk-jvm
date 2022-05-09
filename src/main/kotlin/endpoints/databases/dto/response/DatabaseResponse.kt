@@ -1,9 +1,9 @@
 package endpoints.databases.dto.response
 
 import endpoints.common.FileResponse
-import endpoints.common.IconObejct
+import endpoints.common.IconObject
 import endpoints.common.RichTextObjectResponse
-import endpoints.users.dto.resposne.PartialUserResponse
+import endpoints.users.dto.response.PartialUserResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -28,7 +28,7 @@ data class DatabaseResponse(
 
 	val title: Array<RichTextObjectResponse>,
 
-	val icon: IconObejct,
+	val icon: IconObject,
 
 	val cover: FileResponse.External,
 
