@@ -9,8 +9,8 @@ plugins {
 group = "me.ey611"
 version = "1.0-SNAPSHOT"
 
-val ktorVersion = "2.0.0"
-val kotestVersion = "5.2.3"
+val ktorVersion = "2.0.1"
+val kotestVersion = "5.3.0"
 
 repositories {
 	mavenCentral()
