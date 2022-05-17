@@ -1,10 +1,13 @@
 package endpoints.blocks
 
 import Config
-import endpoints.blocks.dto.request.BlockRetrieveRequest
+import endpoints.blocks.dto.request.BlockIdRequest
+import endpoints.blocks.dto.request.BlockListRequest
+import endpoints.blocks.dto.response.BlockListResponse
 import endpoints.blocks.dto.response.BlockResponse
 import http.getKtorClient
 import io.kotest.common.runBlocking
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -12,47 +15,34 @@ import org.junit.jupiter.api.Test
 class BlocksTest {
 	private val blocks: Blocks = Blocks(getKtorClient((Config.notionApiKey)))
 
+
 	@Test
 	@DisplayName("[Blocks] Retrieve paragraph block")
 	fun getParagraphBlock() {
 		val result = runBlocking {
-			blocks.retrieve(BlockRetrieveRequest(Config.Block.paragraphId))
+			blocks.retrieve(BlockIdRequest(Config.Block.paragraphId))
 		}
-
 		result shouldNotBe null
 		result is BlockResponse
 	}
 
 	@Test
-	@DisplayName("[Blocks] Retrieve todo block")
-	fun getTodoBlock() {
+	@DisplayName("[Bliocks] Retrieve children block")
+	fun retrieveChildrenBlock() {
 		val result = runBlocking {
-			blocks.retrieve(BlockRetrieveRequest(Config.Block.todoId))
+			blocks.retrieveChildren(BlockListRequest(Config.Block.pageId))
 		}
-
 		result shouldNotBe null
-		result is BlockResponse
+		result is BlockListResponse
 	}
 
 	@Test
-	@DisplayName("[Blocks] Retrieve code block")
-	fun getCodeBlock() {
+	@DisplayName("[Bliocks] Delete block")
+	fun deleteBlock() {
 		val result = runBlocking {
-			blocks.retrieve(BlockRetrieveRequest(Config.Block.codeId))
+			blocks.delete(BlockIdRequest(Config.Block.codeId))
 		}
-
 		result shouldNotBe null
-		result is BlockResponse
-	}
-
-	@Test
-	@DisplayName("[Blocks] Retrieve quote block")
-	fun getQuoteBlock() {
-		val result = runBlocking {
-			blocks.retrieve(BlockRetrieveRequest(Config.Block.quoteId))
-		}
-
-		result shouldNotBe null
-		result is BlockResponse
+		result?.archived shouldBe true
 	}
 }

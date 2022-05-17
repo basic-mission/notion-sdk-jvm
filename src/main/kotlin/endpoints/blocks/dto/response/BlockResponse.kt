@@ -625,7 +625,7 @@ data class ParagraphType(
 data class HeadingType(
 	@SerialName("rich_text")
 	val richText: List<RichTextObjectResponse>,
-	val color: Color = Color.DEFAULT
+	val color: Color? = Color.DEFAULT
 )
 
 @Serializable
@@ -681,9 +681,9 @@ data class ToggleType(
 @Serializable
 data class CodeType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
-	val caption: List<RichTextObjectResponse>,
-	val language: String
+	val richText: List<RichTextObjectResponse>?,
+	val caption: List<RichTextObjectResponse>?,
+	val language: String?
 )
 
 @Serializable
@@ -724,13 +724,13 @@ data class PdfType(
 
 @Serializable
 data class BookmarkType(
-	val url: String,
-	val caption: List<RichTextObjectResponse>
+	val url: String?,
+	val caption: List<RichTextObjectResponse>?
 )
 
 @Serializable
 data class EquationType(
-	val expression: String
+	val expression: String?
 )
 
 @Serializable
@@ -738,7 +738,7 @@ class DividerType
 
 @Serializable
 data class TableOfContentsType(
-	val color: Color = Color.DEFAULT
+	val color: Color? = Color.DEFAULT
 )
 
 @Serializable
@@ -768,11 +768,11 @@ data class TemplateType(
 
 @Serializable
 sealed class LinkToPageType {
-	abstract val type: String
+	abstract val type: String?
 
 	@SerialName("page_id")
 	data class PageId(
-		override val type: String,
+		override val type: String? = "page_id",
 
 		@SerialName("page_id")
 		val pageId: String
@@ -780,7 +780,7 @@ sealed class LinkToPageType {
 
 	@SerialName("database_id")
 	data class DatabaseId(
-		override val type: String,
+		override val type: String? = "database_id",
 
 		@SerialName("database_id")
 		val databaseId: String
@@ -820,5 +820,5 @@ data class TableType(
 
 @Serializable
 data class TableRowType(
-	val cells: List<RichTextObjectResponse>
+	val cells: List<RichTextObjectResponse>?
 )

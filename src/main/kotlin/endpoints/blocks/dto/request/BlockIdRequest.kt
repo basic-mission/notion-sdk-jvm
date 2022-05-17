@@ -1,5 +1,5 @@
 package endpoints.blocks.dto.request
 
-data class BlockRetrieveRequest(
+data class BlockIdRequest(
 	val blockId: String
 )
