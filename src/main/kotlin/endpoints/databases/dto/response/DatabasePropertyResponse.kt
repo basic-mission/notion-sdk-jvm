@@ -13,6 +13,14 @@ sealed class DatabasePropertyResponse {
 	abstract val name: String
 
 	@Serializable
+	@SerialName("title")
+	data class Title(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.TITLE,
+		override val name: String,
+	) : DatabasePropertyResponse()
+
+	@Serializable
 	@SerialName("number")
 	data class Number(
 		override val id: String,
@@ -29,30 +37,8 @@ sealed class DatabasePropertyResponse {
 		override val type: DatabasePropertyType = DatabasePropertyType.SELECT,
 		override val name: String,
 
-		val options: Array<SelectOptionsType>
-	) : DatabasePropertyResponse() {
-		override fun equals(other: Any?): Boolean {
-			if (this === other) return true
-			if (javaClass != other?.javaClass) return false
-
-			other as Select
-
-			if (id != other.id) return false
-			if (type != other.type) return false
-			if (name != other.name) return false
-			if (!options.contentEquals(other.options)) return false
-
-			return true
-		}
-
-		override fun hashCode(): Int {
-			var result = id.hashCode()
-			result = 31 * result + type.hashCode()
-			result = 31 * result + name.hashCode()
-			result = 31 * result + options.contentHashCode()
-			return result
-		}
-	}
+		val options: List<SelectOptionsType>
+	) : DatabasePropertyResponse()
 
 	@Serializable
 	@SerialName("multi_select")
@@ -61,30 +47,65 @@ sealed class DatabasePropertyResponse {
 		override val type: DatabasePropertyType = DatabasePropertyType.MULTI_SELECT,
 		override val name: String,
 
-		val options: Array<SelectOptionsType>
-	) : DatabasePropertyResponse() {
-		override fun equals(other: Any?): Boolean {
-			if (this === other) return true
-			if (javaClass != other?.javaClass) return false
+		@SerialName("multi_select")
+		val multiSelect: MultiSelectOptionsType
+	) : DatabasePropertyResponse()
 
-			other as MultiSelect
+	@Serializable
+	@SerialName("date")
+	data class Date(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.DATE,
+		override val name: String,
+	) : DatabasePropertyResponse()
 
-			if (id != other.id) return false
-			if (type != other.type) return false
-			if (name != other.name) return false
-			if (!options.contentEquals(other.options)) return false
+	@Serializable
+	@SerialName("people")
+	data class People(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.PEOPLE,
+		override val name: String,
+	) : DatabasePropertyResponse()
 
-			return true
-		}
+	@Serializable
+	@SerialName("files")
+	data class Files(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.FILES,
+		override val name: String,
+	) : DatabasePropertyResponse()
 
-		override fun hashCode(): Int {
-			var result = id.hashCode()
-			result = 31 * result + type.hashCode()
-			result = 31 * result + name.hashCode()
-			result = 31 * result + options.contentHashCode()
-			return result
-		}
-	}
+	@Serializable
+	@SerialName("checkbox")
+	data class Checkbox(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.CHECKBOX,
+		override val name: String,
+	) : DatabasePropertyResponse()
+
+	@Serializable
+	@SerialName("url")
+	data class Url(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.URL,
+		override val name: String,
+	) : DatabasePropertyResponse()
+
+	@Serializable
+	@SerialName("email")
+	data class Email(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.EMAIL,
+		override val name: String,
+	) : DatabasePropertyResponse()
+
+	@Serializable
+	@SerialName("phone_number")
+	data class PhoneNumber(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.PHONE_NUMBER,
+		override val name: String,
+	) : DatabasePropertyResponse()
 
 	@Serializable
 	@SerialName("formula")
@@ -117,7 +138,7 @@ sealed class DatabasePropertyResponse {
 	@SerialName("rollup")
 	data class Rollup(
 		override val id: String,
-		override val type: DatabasePropertyType = DatabasePropertyType.RELATION,
+		override val type: DatabasePropertyType = DatabasePropertyType.ROLLUP,
 		override val name: String,
 
 		@SerialName("relation_property_name")
@@ -133,6 +154,38 @@ sealed class DatabasePropertyResponse {
 		val rollupPropertyId: String,
 
 		val function: String,
+	) : DatabasePropertyResponse()
+
+	@Serializable
+	@SerialName("created_time")
+	data class CreatedTime(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.CREATED_TIME,
+		override val name: String,
+	) : DatabasePropertyResponse()
+
+	@Serializable
+	@SerialName("created_by")
+	data class CreatedBy(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.CREATED_BY,
+		override val name: String,
+	) : DatabasePropertyResponse()
+
+	@Serializable
+	@SerialName("last_edited_time")
+	data class LastEditedTime(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.LAST_EDITED_TIME,
+		override val name: String,
+	) : DatabasePropertyResponse()
+
+	@Serializable
+	@SerialName("last_edited_by")
+	data class LastEditedBy(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.LAST_EDITED_BY,
+		override val name: String,
 	) : DatabasePropertyResponse()
 }
 
@@ -201,4 +254,9 @@ data class SelectOptionsType(
 	val name: String,
 	val id: String,
 	val color: Color
+)
+
+@Serializable
+data class MultiSelectOptionsType(
+	val options: List<SelectOptionsType>
 )
