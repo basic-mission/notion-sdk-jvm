@@ -28,7 +28,7 @@ dependencies {
 	implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
 
 	// serialization
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+	implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
 	// logger
 	implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")

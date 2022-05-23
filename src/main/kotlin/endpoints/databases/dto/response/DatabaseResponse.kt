@@ -2,7 +2,7 @@ package endpoints.databases.dto.response
 
 import endpoints.common.FileResponse
 import endpoints.common.IconObject
-import endpoints.common.RichTextObjectResponse
+import endpoints.common.RichTextObject
 import endpoints.users.dto.response.PartialUserResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -26,7 +26,7 @@ data class DatabaseResponse(
 	@SerialName("last_edited_by")
 	val lastEditedBy: PartialUserResponse,
 
-	val title: List<RichTextObjectResponse>,
+	val title: List<RichTextObject>,
 
 	val icon: IconObject?,
 
@@ -43,23 +43,28 @@ data class DatabaseResponse(
 
 @Serializable
 sealed class Parent {
-	abstract val type: String
+	abstract val type: ParentType
 
 	@Serializable
-	@SerialName("page")
+	@SerialName("page_id")
 	data class Page(
-		override val type: String = "page_id",
-
-		@SerialName("page_id")
-		val pageId: String,
+		override val type: ParentType = ParentType.PAGE_ID,
+		@SerialName("page_id") val pageId: String,
 	) : Parent()
 
 	@Serializable
 	@SerialName("workspace")
 	data class Workspace(
-		override val type: String = "workspace",
-
-		@SerialName("workspace")
-		val workspace: Boolean = true,
+		override val type: ParentType = ParentType.WORKSPACE,
+		@SerialName("workspace") val workspace: Boolean = true,
 	) : Parent()
+}
+
+@Serializable
+enum class ParentType {
+	@SerialName("page_id")
+	PAGE_ID,
+
+	@SerialName("workspace")
+	WORKSPACE
 }

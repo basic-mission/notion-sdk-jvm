@@ -1,10 +1,12 @@
 package endpoints.databases
 
+import endpoints.databases.dto.request.DatabaseCreateRequest
 import endpoints.databases.dto.request.DatabaseRetrieveRequest
 import endpoints.databases.dto.response.DatabaseResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.http.*
 import mu.KotlinLogging
 
 open class Databases(
@@ -14,7 +16,15 @@ open class Databases(
 
 	suspend fun query() {}
 
-	suspend fun create() {}
+	suspend fun create(request: DatabaseCreateRequest): DatabaseResponse? = try {
+		ktorClient.post("/v1/databases") {
+			setBody(request)
+			contentType(ContentType.Application.Json)
+		}.body<DatabaseResponse>()
+	} catch (error: Exception) {
+		logger.error { "[Database.create] ${error.message}" }
+		null
+	}
 
 	suspend fun update() {}
 

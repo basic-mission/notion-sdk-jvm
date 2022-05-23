@@ -5,12 +5,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Annotations(
-	val bold: Boolean,
-	val italic: Boolean,
-	val strikethrough: Boolean,
-	val underline: Boolean,
-	val code: Boolean,
-	val color: Color,
+	val bold: Boolean = false,
+	val italic: Boolean = false,
+	val strikethrough: Boolean = false,
+	val underline: Boolean = false,
+	val code: Boolean = false,
+	val color: Color = Color.DEFAULT,
 )
 
 @Serializable

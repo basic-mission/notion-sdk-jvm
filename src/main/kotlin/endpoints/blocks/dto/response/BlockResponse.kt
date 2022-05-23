@@ -3,7 +3,7 @@ package endpoints.blocks.dto.response
 import endpoints.common.Color
 import endpoints.common.FileResponse
 import endpoints.common.IconObject
-import endpoints.common.RichTextObjectResponse
+import endpoints.common.RichTextObject
 import endpoints.users.dto.response.PartialUserResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -616,7 +616,7 @@ sealed class BlockResponse {
 @Serializable
 data class ParagraphType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val color: Color = Color.DEFAULT,
 	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
@@ -624,14 +624,14 @@ data class ParagraphType(
 @Serializable
 data class HeadingType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val color: Color? = Color.DEFAULT
 )
 
 @Serializable
 data class CalloutType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val icon: IconObject,
 	val color: Color = Color.DEFAULT,
 	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
@@ -640,7 +640,7 @@ data class CalloutType(
 @Serializable
 data class QuoteType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val color: Color = Color.DEFAULT,
 	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
@@ -648,7 +648,7 @@ data class QuoteType(
 @Serializable
 data class BulletedListItemType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val color: Color = Color.DEFAULT,
 	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
@@ -656,7 +656,7 @@ data class BulletedListItemType(
 @Serializable
 data class NumberedListItemType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val color: Color = Color.DEFAULT,
 	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
@@ -664,7 +664,7 @@ data class NumberedListItemType(
 @Serializable
 data class ToDoType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val checked: Boolean = false,
 	val color: Color = Color.DEFAULT,
 	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
@@ -673,7 +673,7 @@ data class ToDoType(
 @Serializable
 data class ToggleType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val color: Color = Color.DEFAULT,
 	val children: List<BlockResponse>? = ArrayList<BlockResponse>()
 )
@@ -681,8 +681,8 @@ data class ToggleType(
 @Serializable
 data class CodeType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>?,
-	val caption: List<RichTextObjectResponse>?,
+	val richText: List<RichTextObject>?,
+	val caption: List<RichTextObject>?,
 	val language: String?
 )
 
@@ -714,7 +714,7 @@ data class VideoType(
 @Serializable
 data class FileType(
 	val file: FileResponse,
-	val caption: List<RichTextObjectResponse>
+	val caption: List<RichTextObject>
 )
 
 @Serializable
@@ -725,7 +725,7 @@ data class PdfType(
 @Serializable
 data class BookmarkType(
 	val url: String?,
-	val caption: List<RichTextObjectResponse>?
+	val caption: List<RichTextObject>?
 )
 
 @Serializable
@@ -762,7 +762,7 @@ data class LinkPreviewType(
 @Serializable
 data class TemplateType(
 	@SerialName("rich_text")
-	val richText: List<RichTextObjectResponse>,
+	val richText: List<RichTextObject>,
 	val children: List<BlockResponse>
 )
 
@@ -820,5 +820,5 @@ data class TableType(
 
 @Serializable
 data class TableRowType(
-	val cells: List<RichTextObjectResponse>?
+	val cells: List<RichTextObject>?
 )

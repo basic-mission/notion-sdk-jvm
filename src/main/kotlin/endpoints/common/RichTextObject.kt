@@ -5,63 +5,44 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed class RichTextObjectResponse {
+sealed class RichTextObject {
 	@SerialName("plain_text")
-	abstract val plainText: String
-
+	abstract val plainText: String?
 	abstract val href: String?
-
 	abstract val annotations: Annotations
-
-	abstract val type: RichTextObjectType
 
 	@Serializable
 	@SerialName("text")
 	data class Text(
 		@SerialName("plain_text")
-		override val plainText: String,
-		override val href: String?,
-		override val annotations: Annotations,
-		override val type: RichTextObjectType = RichTextObjectType.TEXT,
+		override val plainText: String? = null,
+		override val href: String? = null,
+		override val annotations: Annotations = Annotations(),
 
 		val text: TextObject
-	) : RichTextObjectResponse()
+	) : RichTextObject()
 
 	@Serializable
 	@SerialName("mention")
 	data class Mention(
 		@SerialName("plain_text")
-		override val plainText: String,
-		override val href: String?,
-		override val annotations: Annotations,
-		override val type: RichTextObjectType = RichTextObjectType.TEXT,
+		override val plainText: String? = null,
+		override val href: String? = null,
+		override val annotations: Annotations = Annotations(),
 
 		val mention: MentionObject
-	) : RichTextObjectResponse()
+	) : RichTextObject()
 
 	@Serializable
 	@SerialName("equation")
 	data class Equation(
 		@SerialName("plain_text")
-		override val plainText: String,
-		override val href: String?,
-		override val annotations: Annotations,
-		override val type: RichTextObjectType = RichTextObjectType.EQUATION,
+		override val plainText: String? = null,
+		override val href: String? = null,
+		override val annotations: Annotations = Annotations(),
 
 		val expression: String
-	) : RichTextObjectResponse()
-}
-
-@Serializable
-enum class RichTextObjectType {
-	@SerialName("text")
-	TEXT,
-
-	@SerialName("mention")
-	MENTION,
-
-	@SerialName("equation")
-	EQUATION,
+	) : RichTextObject()
 }
 
 @Serializable

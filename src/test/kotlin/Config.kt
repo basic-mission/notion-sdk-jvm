@@ -1,6 +1,5 @@
 object Config {
-	const val notionApiKey: String =
-		"" // set notionApiKey for testing
+	const val notionApiKey: String = "" // set notionApiKey for testing
 
 	object Block {
 		const val paragraphId: String = ""
@@ -12,5 +11,7 @@ object Config {
 
 	object Database {
 		const val databaseId: String = ""
+
+		const val pageId: String = ""
 	}
 }

@@ -1,6 +1,7 @@
 package endpoints.databases.dto.response
 
 import endpoints.common.Color
+import endpoints.common.EmptyObject
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -21,13 +22,23 @@ sealed class DatabasePropertyResponse {
 	) : DatabasePropertyResponse()
 
 	@Serializable
+	@SerialName("rich_text")
+	data class Text(
+		override val id: String,
+		override val type: DatabasePropertyType = DatabasePropertyType.RICH_TEXT,
+		override val name: String,
+
+		@SerialName("rich_text") val richText: EmptyObject,
+	) : DatabasePropertyResponse()
+
+	@Serializable
 	@SerialName("number")
 	data class Number(
 		override val id: String,
 		override val type: DatabasePropertyType = DatabasePropertyType.NUMBER,
 		override val name: String,
 
-		val format: String
+		val number: NumberObject
 	) : DatabasePropertyResponse()
 
 	@Serializable
@@ -37,7 +48,7 @@ sealed class DatabasePropertyResponse {
 		override val type: DatabasePropertyType = DatabasePropertyType.SELECT,
 		override val name: String,
 
-		val options: List<SelectOptionsType>
+		val select: SelectObject
 	) : DatabasePropertyResponse()
 
 	@Serializable
@@ -48,7 +59,7 @@ sealed class DatabasePropertyResponse {
 		override val name: String,
 
 		@SerialName("multi_select")
-		val multiSelect: MultiSelectOptionsType
+		val multiSelect: SelectObject
 	) : DatabasePropertyResponse()
 
 	@Serializable
@@ -250,13 +261,18 @@ enum class DatabasePropertyType {
 }
 
 @Serializable
-data class SelectOptionsType(
-	val name: String,
-	val id: String,
-	val color: Color
+data class NumberObject(
+	val format: String
 )
 
 @Serializable
-data class MultiSelectOptionsType(
-	val options: List<SelectOptionsType>
+data class SelectObject(
+	val options: List<SelectOptionsObject>
+)
+
+@Serializable
+data class SelectOptionsObject(
+	val name: String,
+	val id: String,
+	val color: Color
 )
