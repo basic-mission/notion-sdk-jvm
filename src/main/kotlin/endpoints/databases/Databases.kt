@@ -2,6 +2,7 @@ package endpoints.databases
 
 import endpoints.databases.dto.request.DatabaseCreateRequest
 import endpoints.databases.dto.request.DatabaseRetrieveRequest
+import endpoints.databases.dto.request.DatabaseUpdateRequest
 import endpoints.databases.dto.response.DatabaseResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -22,11 +23,19 @@ open class Databases(
 			contentType(ContentType.Application.Json)
 		}.body<DatabaseResponse>()
 	} catch (error: Exception) {
-		logger.error { "[Database.create] ${error.message}" }
+		logger.error { "[Databases.create] ${error.message}" }
 		null
 	}
 
-	suspend fun update() {}
+	suspend fun update(request: DatabaseUpdateRequest): DatabaseResponse? = try {
+		ktorClient.patch("/v1/databases/${request.databaseId}") {
+			setBody(request.body)
+			contentType(ContentType.Application.Json)
+		}.body<DatabaseResponse>()
+	} catch (error: Exception) {
+		logger.error { "[Databases.update] ${error.message}" }
+		null
+	}
 
 	suspend fun retrieve(
 		request: DatabaseRetrieveRequest

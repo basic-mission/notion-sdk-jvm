@@ -7,6 +7,7 @@ import endpoints.common.RichTextObject
 import endpoints.databases.dto.response.Parent
 import endpoints.databases.serialization.DatabaseCreatePropertySerializer
 import kotlinx.serialization.EncodeDefault
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,6 +19,7 @@ data class DatabaseCreateRequest(
 )
 
 
+@OptIn(ExperimentalSerializationApi::class)
 @Serializable(with = DatabaseCreatePropertySerializer::class)
 sealed class DatabaseCreateProperties {
 

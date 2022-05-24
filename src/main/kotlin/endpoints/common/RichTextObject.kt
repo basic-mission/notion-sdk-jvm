@@ -48,7 +48,7 @@ sealed class RichTextObject {
 @Serializable
 data class TextObject(
 	val content: String,
-	val link: Link?,
+	val link: Link? = null,
 )
 
 @Serializable
