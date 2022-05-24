@@ -4,6 +4,8 @@ object Config {
 	object Block {
 		const val paragraphId: String = ""
 
+		const val todoId: String = ""
+
 		const val codeId: String = ""
 
 		const val pageId: String = ""

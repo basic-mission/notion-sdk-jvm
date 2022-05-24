@@ -53,7 +53,8 @@ data class TextObject(
 
 @Serializable
 data class Link(
-	val type: String = "url"
+	val type: String = "url",
+	val url: String? = null,
 )
 
 @Serializable
