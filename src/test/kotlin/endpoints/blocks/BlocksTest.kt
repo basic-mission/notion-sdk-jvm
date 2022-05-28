@@ -33,20 +33,21 @@ class BlocksTest : AnnotationSpec() {
 	@DisplayName("[Blocks] Update todo block")
 	fun updateBlock() {
 		val result = runBlocking {
-			val todoRequest = BlockUpdateRequest(
-				blockId = todoId,
-				body = BlockBodyRequest.Todo(
-					toDo = ToDoRequestType(
-						richText = listOf(
-							RichTextObject.Text(
-								text = TextObject("Lacinato kale.", null)
-							)
-						),
-						checked = true
+			blocks.update(
+				BlockUpdateRequest(
+					blockId = todoId,
+					body = BlockBodyRequest.Todo(
+						toDo = ToDoRequestType(
+							richText = listOf(
+								RichTextObject.Text(
+									text = TextObject("Lacinato kale.", null)
+								)
+							),
+							checked = true
+						)
 					)
 				)
 			)
-			blocks.update(todoRequest)
 		}
 
 		result shouldNotBe null
@@ -57,7 +58,11 @@ class BlocksTest : AnnotationSpec() {
 	@DisplayName("[Blocks] Retrieve children block")
 	fun retrieveChildrenBlock() {
 		val result = runBlocking {
-			blocks.retrieveChildren(BlockRetrieveChildRequest(Config.Block.pageId))
+			blocks.retrieveChildren(
+				BlockRetrieveChildRequest(
+					Config.Block.pageId
+				)
+			)
 		}
 
 		result shouldNotBe null
@@ -68,32 +73,34 @@ class BlocksTest : AnnotationSpec() {
 	@DisplayName("[Blocks] Append children block")
 	fun appendChildrenBlock() {
 		val result = runBlocking {
-			val pageRequest = BlockAppendChildRequest(
-				blockId = Config.Block.pageId,
-				body = BlockListChildRequest(
-					listOf(
-						BlockListBodyRequest.Heading2(
-							heading2 = HeadingRequestType(
-								listOf(
-									RichTextObject.Text(
-										text = TextObject(
-											content = "Lacinato kale",
-											link = Link(
-												url = "https://en.wikipedia.org/wiki/Lacinato_kale"
+			blocks.appendChildren(
+				BlockAppendChildRequest(
+					blockId = Config.Block.pageId,
+					body = BlockListChildRequest(
+						listOf(
+							BlockListBodyRequest.Heading2(
+								heading2 = HeadingRequestType(
+									listOf(
+										RichTextObject.Text(
+											text = TextObject(
+												content = "Lacinato kale",
+												link = Link(
+													url = "https://en.wikipedia.org/wiki/Lacinato_kale"
+												)
 											)
 										)
 									)
 								)
-							)
-						),
-						BlockListBodyRequest.Paragraph(
-							paragraph = ParagraphRequestType(
-								listOf(
-									RichTextObject.Text(
-										text = TextObject(
-											content = "Lacinato kale is a variety of kale with a long tradition in Italian cuisine, especially that of Tuscany.",
-											link = Link(
-												url = "https://en.wikipedia.org/wiki/Lacinato_kale"
+							),
+							BlockListBodyRequest.Paragraph(
+								paragraph = ParagraphRequestType(
+									listOf(
+										RichTextObject.Text(
+											text = TextObject(
+												content = "Lacinato kale is a variety of kale with a long tradition in Italian cuisine, especially that of Tuscany.",
+												link = Link(
+													url = "https://en.wikipedia.org/wiki/Lacinato_kale"
+												)
 											)
 										)
 									)
@@ -103,7 +110,6 @@ class BlocksTest : AnnotationSpec() {
 					)
 				)
 			)
-			blocks.appendChildren(pageRequest)
 		}
 
 		result shouldNotBe null
@@ -114,7 +120,11 @@ class BlocksTest : AnnotationSpec() {
 	@DisplayName("[Blocks] Delete block")
 	fun deleteBlock() {
 		val result = runBlocking {
-			blocks.delete(BlockIdRequest(Config.Block.codeId))
+			blocks.delete(
+				BlockIdRequest(
+					Config.Block.codeId
+				)
+			)
 		}
 		result shouldNotBe null
 		result is BlockResponse
