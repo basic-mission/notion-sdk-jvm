@@ -8,7 +8,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DatabaseResponse(
+open class DatabaseResponse(
 	@SerialName("object")
 	var objects: String = "database",
 
@@ -34,7 +34,7 @@ data class DatabaseResponse(
 
 	val properties: Map<String, DatabasePropertyResponse>,
 
-	val parent: Parent,
+	val parent: DatabaseParent,
 
 	val url: String,
 
@@ -42,7 +42,7 @@ data class DatabaseResponse(
 )
 
 @Serializable
-sealed class Parent {
+sealed class DatabaseParent {
 	abstract val type: ParentType
 
 	@Serializable
@@ -50,21 +50,26 @@ sealed class Parent {
 	data class Page(
 		override val type: ParentType = ParentType.PAGE_ID,
 		@SerialName("page_id") val pageId: String,
-	) : Parent()
+	) : DatabaseParent()
 
 	@Serializable
 	@SerialName("workspace")
 	data class Workspace(
 		override val type: ParentType = ParentType.WORKSPACE,
 		@SerialName("workspace") val workspace: Boolean = true,
-	) : Parent()
+	) : DatabaseParent()
 }
 
 @Serializable
 enum class ParentType {
+
+	@SerialName("workspace")
+	WORKSPACE,
+
 	@SerialName("page_id")
 	PAGE_ID,
 
-	@SerialName("workspace")
-	WORKSPACE
+	@SerialName("database_id")
+	DATABASE_ID,
 }
+

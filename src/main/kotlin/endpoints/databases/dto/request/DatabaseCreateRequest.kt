@@ -4,7 +4,7 @@ import endpoints.common.Color
 import endpoints.common.Empty
 import endpoints.common.EmptyObject
 import endpoints.common.RichTextObject
-import endpoints.databases.dto.response.Parent
+import endpoints.databases.dto.response.DatabaseParent
 import endpoints.databases.serialization.DatabaseCreatePropertySerializer
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DatabaseCreateRequest(
-	val parent: Parent.Page,
+	val parent: DatabaseParent.Page,
 	val title: List<RichTextObject>,
 	val properties: Map<String, DatabaseCreateProperties>,
 )
