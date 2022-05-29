@@ -5,8 +5,8 @@ import endpoints.common.Color
 import endpoints.common.RichTextObject
 import endpoints.common.TextObject
 import endpoints.databases.dto.request.*
+import endpoints.databases.dto.response.DatabaseParent
 import endpoints.databases.dto.response.DatabaseResponse
-import endpoints.databases.dto.response.Parent
 import http.getKtorClient
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec
@@ -22,7 +22,7 @@ internal class DatabasesTest : AnnotationSpec() {
 		val result = runBlocking {
 			databases.create(
 				DatabaseCreateRequest(
-					parent = Parent.Page(
+					parent = DatabaseParent.Page(
 						pageId = Config.Database.pageId
 					),
 					title = listOf(
@@ -100,7 +100,7 @@ internal class DatabasesTest : AnnotationSpec() {
 		val database = runBlocking {
 			databases.create(
 				DatabaseCreateRequest(
-					parent = Parent.Page(
+					parent = DatabaseParent.Page(
 						pageId = Config.Database.pageId
 					),
 					title = listOf(

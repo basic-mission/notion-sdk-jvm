@@ -8,7 +8,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-open class DatabaseResponse(
+data class DatabaseResponse(
 	@SerialName("object")
 	var objects: String = "database",
 

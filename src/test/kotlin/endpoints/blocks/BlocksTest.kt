@@ -130,6 +130,7 @@ class BlocksTest : AnnotationSpec() {
 				)
 			)
 		}
+
 		result shouldNotBe null
 		result is BlockResponse
 	}
