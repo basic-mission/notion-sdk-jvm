@@ -20,9 +20,13 @@ class BlocksTest : AnnotationSpec() {
 
 	@Test
 	@DisplayName("[Blocks] Retrieve paragraph block")
-	fun getParagraphBlock() {
+	fun retrieveParagraphBlock() {
 		val result = runBlocking {
-			blocks.retrieve(BlockIdRequest(Config.Block.paragraphId))
+			blocks.retrieve(
+				BlockIdRequest(
+					Config.Block.paragraphId
+				)
+			)
 		}
 
 		result shouldNotBe null
