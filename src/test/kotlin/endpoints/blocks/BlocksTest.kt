@@ -1,7 +1,6 @@
 package endpoints.blocks
 
 import Config
-import Config.Block.todoId
 import endpoints.blocks.dto.request.*
 import endpoints.blocks.dto.response.BlockListResponse
 import endpoints.blocks.dto.response.BlockResponse
@@ -17,6 +16,22 @@ import org.junit.jupiter.api.DisplayName
 class BlocksTest : AnnotationSpec() {
 	private val blocks: Blocks = Blocks(getKtorClient((Config.notionApiKey)))
 
+	init {
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe ""
+
+		(System.getenv("Blocks_paragraphId") ?: Config.Block.paragraphId) shouldNotBe null
+		(System.getenv("Blocks_paragraphId") ?: Config.Block.paragraphId) shouldNotBe null
+
+		(System.getenv("Blocks_todoId") ?: Config.Block.todoId) shouldNotBe null
+		(System.getenv("Blocks_todoId") ?: Config.Block.todoId) shouldNotBe null
+
+		(System.getenv("Blocks_codeId") ?: Config.Block.codeId) shouldNotBe null
+		(System.getenv("Blocks_codeId") ?: Config.Block.codeId) shouldNotBe null
+
+		(System.getenv("Blocks_pageId") ?: Config.Block.pageId) shouldNotBe null
+		(System.getenv("Blocks_pageId") ?: Config.Block.pageId) shouldNotBe null
+	}
 
 	@Test
 	@DisplayName("[Blocks] Retrieve paragraph block")
@@ -39,7 +54,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.update(
 				BlockUpdateRequest(
-					blockId = todoId,
+					blockId = Config.Block.todoId,
 					body = BlockBodyRequest.Todo(
 						toDo = ToDoRequestType(
 							richText = listOf(

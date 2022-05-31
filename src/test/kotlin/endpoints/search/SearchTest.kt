@@ -15,6 +15,11 @@ import org.junit.jupiter.api.DisplayName
 class SearchTest : AnnotationSpec() {
 	private val search: Search = Search(getKtorClient((Config.notionApiKey)))
 
+	init {
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe ""
+	}
+
 	@Test
 	@DisplayName("[Search] Search Database or Page")
 	fun search() {

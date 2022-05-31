@@ -16,6 +16,17 @@ import org.junit.jupiter.api.DisplayName
 internal class DatabasesTest : AnnotationSpec() {
 	private val databases: Databases = Databases(getKtorClient(Config.notionApiKey))
 
+	init {
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe ""
+
+		(System.getenv("Databases_databaseId") ?: Config.Database.databaseId) shouldNotBe null
+		(System.getenv("Databases_databaseId") ?: Config.Database.databaseId) shouldNotBe ""
+
+		(System.getenv("Databases_pageId") ?: Config.Database.pageId) shouldNotBe null
+		(System.getenv("Databases_pageId") ?: Config.Database.pageId) shouldNotBe ""
+	}
+
 	@Test
 	@DisplayName("[Databases] Create a database")
 	fun createDatabase() {
