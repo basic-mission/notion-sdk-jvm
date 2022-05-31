@@ -10,7 +10,9 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.DisplayName
 
 internal class UsersTest : AnnotationSpec() {
-	private val users: Users = Users(getKtorClient(Config.notionApiKey))
+	private val users: Users = Users(
+		getKtorClient((System.getenv("notionApiKey") ?: Config.notionApiKey))
+	)
 
 	init {
 		System.getenv("notionApiKey") shouldNotBe null

@@ -13,7 +13,9 @@ import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.DisplayName
 
 class SearchTest : AnnotationSpec() {
-	private val search: Search = Search(getKtorClient((Config.notionApiKey)))
+	private val search: Search = Search(
+		getKtorClient((System.getenv("notionApiKey") ?: Config.notionApiKey))
+	)
 
 	init {
 		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null

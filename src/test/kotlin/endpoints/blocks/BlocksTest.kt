@@ -14,7 +14,14 @@ import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.DisplayName
 
 class BlocksTest : AnnotationSpec() {
-	private val blocks: Blocks = Blocks(getKtorClient((Config.notionApiKey)))
+	private val blocks: Blocks = Blocks(
+		getKtorClient((System.getenv("notionApiKey") ?: Config.notionApiKey))
+	)
+
+	private val paragraphId = System.getenv("Blocks_paragraphId") ?: Config.Block.paragraphId
+	private val todoId = System.getenv("Blocks_todoId") ?: Config.Block.todoId
+	private val codeId = System.getenv("Blocks_codeId") ?: Config.Block.codeId
+	private val pageId = System.getenv("Blocks_pageId") ?: Config.Block.pageId
 
 	init {
 		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null
@@ -39,7 +46,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.retrieve(
 				BlockIdRequest(
-					Config.Block.paragraphId
+					this.paragraphId
 				)
 			)
 		}
@@ -54,7 +61,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.update(
 				BlockUpdateRequest(
-					blockId = Config.Block.todoId,
+					blockId = this.todoId,
 					body = BlockBodyRequest.Todo(
 						toDo = ToDoRequestType(
 							richText = listOf(
@@ -79,7 +86,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.retrieveChildren(
 				BlockRetrieveChildRequest(
-					Config.Block.pageId
+					this.pageId
 				)
 			)
 		}
@@ -94,7 +101,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.appendChildren(
 				BlockAppendChildRequest(
-					blockId = Config.Block.pageId,
+					blockId = this.pageId,
 					body = BlockListChildRequest(
 						listOf(
 							BlockListBodyRequest.Heading2(
@@ -141,7 +148,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.delete(
 				BlockIdRequest(
-					Config.Block.codeId
+					this.codeId
 				)
 			)
 		}
