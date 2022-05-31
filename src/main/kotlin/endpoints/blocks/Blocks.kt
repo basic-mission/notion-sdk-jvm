@@ -15,12 +15,12 @@ import mu.KotlinLogging
 open class Blocks(
 	private val ktorClient: HttpClient,
 ) {
-	val logger = KotlinLogging.logger {}
+	private val logger = KotlinLogging.logger {}
 
 	suspend fun retrieve(
 		request: BlockIdRequest
 	): BlockResponse? = try {
-		ktorClient.get("v1/blocks/${request.blockId}").body<BlockResponse>()
+		ktorClient.get("/v1/blocks/${request.blockId}").body<BlockResponse>()
 	} catch (error: Exception) {
 		logger.error { "[Blocks.retrieve] ${error.message}" }
 		null
@@ -29,7 +29,7 @@ open class Blocks(
 	suspend fun update(
 		request: BlockUpdateRequest
 	): BlockResponse? = try {
-		ktorClient.patch("v1/blocks/${request.blockId}") {
+		ktorClient.patch("/v1/blocks/${request.blockId}") {
 			contentType(ContentType.Application.Json)
 			setBody(request.body)
 		}.body<BlockResponse>()
@@ -41,7 +41,7 @@ open class Blocks(
 	suspend fun retrieveChildren(
 		request: BlockRetrieveChildRequest
 	): BlockListResponse? = try {
-		ktorClient.get("v1/blocks/${request.blockId}/children}").body<BlockListResponse>()
+		ktorClient.get("/v1/blocks/${request.blockId}/children").body<BlockListResponse>()
 	} catch (error: Exception) {
 		logger.error { "[Blocks.retrieveChildren] ${error.message}" }
 		null
@@ -50,7 +50,7 @@ open class Blocks(
 	suspend fun appendChildren(
 		request: BlockAppendChildRequest
 	): BlockListResponse? = try {
-		ktorClient.patch("v1/blocks/${request.blockId}/children") {
+		ktorClient.patch("/v1/blocks/${request.blockId}/children") {
 			contentType(ContentType.Application.Json)
 			setBody(request.body)
 		}.body<BlockListResponse>()
@@ -59,11 +59,10 @@ open class Blocks(
 		null
 	}
 
-
 	suspend fun delete(
 		request: BlockIdRequest
 	): BlockResponse? = try {
-		ktorClient.delete("v1/blocks/${request.blockId}").body<BlockResponse>()
+		ktorClient.delete("/v1/blocks/${request.blockId}").body<BlockResponse>()
 	} catch (error: Exception) {
 		logger.error { "[Blocks.delete] ${error.message}" }
 		null

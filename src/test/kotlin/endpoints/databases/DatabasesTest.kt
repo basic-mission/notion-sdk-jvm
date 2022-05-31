@@ -14,7 +14,24 @@ import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.DisplayName
 
 internal class DatabasesTest : AnnotationSpec() {
-	private val databases: Databases = Databases(getKtorClient(Config.notionApiKey))
+	private val databases: Databases = Databases(
+		getKtorClient((System.getenv("notionApiKey") ?: Config.notionApiKey))
+	)
+
+	private val databaseId: String = System.getenv("Databases_databaseId")
+		?: Config.Database.databaseId
+	private val pageId: String = System.getenv("Databases_pageId") ?: Config.Database.pageId
+
+	init {
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe ""
+
+		(System.getenv("Databases_databaseId") ?: Config.Database.databaseId) shouldNotBe null
+		(System.getenv("Databases_databaseId") ?: Config.Database.databaseId) shouldNotBe ""
+
+		(System.getenv("Databases_pageId") ?: Config.Database.pageId) shouldNotBe null
+		(System.getenv("Databases_pageId") ?: Config.Database.pageId) shouldNotBe ""
+	}
 
 	@Test
 	@DisplayName("[Databases] Create a database")
@@ -23,7 +40,7 @@ internal class DatabasesTest : AnnotationSpec() {
 			databases.create(
 				DatabaseCreateRequest(
 					parent = DatabaseParent.Page(
-						pageId = Config.Database.pageId
+						pageId = this.pageId
 					),
 					title = listOf(
 						RichTextObject.Text(
@@ -101,7 +118,7 @@ internal class DatabasesTest : AnnotationSpec() {
 			databases.create(
 				DatabaseCreateRequest(
 					parent = DatabaseParent.Page(
-						pageId = Config.Database.pageId
+						pageId = this.pageId
 					),
 					title = listOf(
 						RichTextObject.Text(
@@ -219,7 +236,7 @@ internal class DatabasesTest : AnnotationSpec() {
 	@DisplayName("[Databases] Retrieve a database")
 	fun retrieveDatabase() {
 		val result = runBlocking {
-			databases.retrieve(DatabaseRetrieveRequest(Config.Database.databaseId))
+			databases.retrieve(DatabaseRetrieveRequest(this.databaseId))
 		}
 
 		result shouldNotBe null

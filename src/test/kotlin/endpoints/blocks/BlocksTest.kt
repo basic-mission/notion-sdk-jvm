@@ -1,7 +1,6 @@
 package endpoints.blocks
 
 import Config
-import Config.Block.todoId
 import endpoints.blocks.dto.request.*
 import endpoints.blocks.dto.response.BlockListResponse
 import endpoints.blocks.dto.response.BlockResponse
@@ -15,8 +14,31 @@ import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.DisplayName
 
 class BlocksTest : AnnotationSpec() {
-	private val blocks: Blocks = Blocks(getKtorClient((Config.notionApiKey)))
+	private val blocks: Blocks = Blocks(
+		getKtorClient((System.getenv("notionApiKey") ?: Config.notionApiKey))
+	)
 
+	private val paragraphId = System.getenv("Blocks_paragraphId") ?: Config.Block.paragraphId
+	private val todoId = System.getenv("Blocks_todoId") ?: Config.Block.todoId
+	private val codeId = System.getenv("Blocks_codeId") ?: Config.Block.codeId
+	private val pageId = System.getenv("Blocks_pageId") ?: Config.Block.pageId
+
+	init {
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe ""
+
+		(System.getenv("Blocks_paragraphId") ?: Config.Block.paragraphId) shouldNotBe null
+		(System.getenv("Blocks_paragraphId") ?: Config.Block.paragraphId) shouldNotBe null
+
+		(System.getenv("Blocks_todoId") ?: Config.Block.todoId) shouldNotBe null
+		(System.getenv("Blocks_todoId") ?: Config.Block.todoId) shouldNotBe null
+
+		(System.getenv("Blocks_codeId") ?: Config.Block.codeId) shouldNotBe null
+		(System.getenv("Blocks_codeId") ?: Config.Block.codeId) shouldNotBe null
+
+		(System.getenv("Blocks_pageId") ?: Config.Block.pageId) shouldNotBe null
+		(System.getenv("Blocks_pageId") ?: Config.Block.pageId) shouldNotBe null
+	}
 
 	@Test
 	@DisplayName("[Blocks] Retrieve paragraph block")
@@ -24,7 +46,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.retrieve(
 				BlockIdRequest(
-					Config.Block.paragraphId
+					this.paragraphId
 				)
 			)
 		}
@@ -39,7 +61,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.update(
 				BlockUpdateRequest(
-					blockId = todoId,
+					blockId = this.todoId,
 					body = BlockBodyRequest.Todo(
 						toDo = ToDoRequestType(
 							richText = listOf(
@@ -64,7 +86,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.retrieveChildren(
 				BlockRetrieveChildRequest(
-					Config.Block.pageId
+					this.pageId
 				)
 			)
 		}
@@ -79,7 +101,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.appendChildren(
 				BlockAppendChildRequest(
-					blockId = Config.Block.pageId,
+					blockId = this.pageId,
 					body = BlockListChildRequest(
 						listOf(
 							BlockListBodyRequest.Heading2(
@@ -126,7 +148,7 @@ class BlocksTest : AnnotationSpec() {
 		val result = runBlocking {
 			blocks.delete(
 				BlockIdRequest(
-					Config.Block.codeId
+					this.codeId
 				)
 			)
 		}

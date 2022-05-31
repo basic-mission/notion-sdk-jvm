@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -52,6 +53,14 @@ buildscript {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+
+	testLogging {
+		showStandardStreams = true
+		showCauses = true
+		showExceptions = true
+		showStackTraces = true
+		exceptionFormat = FULL
+	}
 }
 
 tasks.withType<KotlinCompile> {
