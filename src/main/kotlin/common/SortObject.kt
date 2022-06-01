@@ -1,4 +1,4 @@
-package endpoints.common
+package common
 
 import endpoints.search.serialization.SortObjectSerializer
 import kotlinx.serialization.SerialName

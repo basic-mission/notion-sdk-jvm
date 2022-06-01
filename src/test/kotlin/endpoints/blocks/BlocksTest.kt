@@ -1,12 +1,12 @@
 package endpoints.blocks
 
 import Config
+import common.Link
+import common.RichTextObject
+import common.TextObject
 import endpoints.blocks.dto.request.*
 import endpoints.blocks.dto.response.BlockListResponse
 import endpoints.blocks.dto.response.BlockResponse
-import endpoints.common.Link
-import endpoints.common.RichTextObject
-import endpoints.common.TextObject
 import http.getKtorClient
 import io.kotest.common.runBlocking
 import io.kotest.core.spec.style.AnnotationSpec

@@ -1,9 +1,9 @@
 package endpoints.databases.dto.request
 
-import endpoints.common.Color
-import endpoints.common.Empty
-import endpoints.common.EmptyObject
-import endpoints.common.RichTextObject
+import common.Color
+import common.Empty
+import common.EmptyObject
+import common.RichTextObject
 import endpoints.databases.serialization.DatabaseUpdatePropertySerializer
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi

@@ -1,6 +1,6 @@
 package endpoints.blocks.dto.request
 
-import endpoints.common.PaginationRequest
+import common.PaginationRequest
 
 data class BlockRetrieveChildRequest(
 	val blockId: String

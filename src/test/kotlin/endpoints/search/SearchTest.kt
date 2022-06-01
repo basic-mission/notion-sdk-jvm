@@ -1,9 +1,9 @@
 package endpoints.search
 
 import Config
-import endpoints.common.DirectionType
-import endpoints.common.SortObject
-import endpoints.common.TimestampType
+import common.DirectionType
+import common.SortObject
+import common.TimestampType
 import endpoints.search.dto.request.SearchRequest
 import endpoints.search.dto.response.SearchResponse
 import http.getKtorClient

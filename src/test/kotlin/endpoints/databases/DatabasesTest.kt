@@ -1,9 +1,9 @@
 package endpoints.databases
 
 import Config
-import endpoints.common.Color
-import endpoints.common.RichTextObject
-import endpoints.common.TextObject
+import common.Color
+import common.RichTextObject
+import common.TextObject
 import endpoints.databases.dto.request.*
 import endpoints.databases.dto.response.DatabaseParent
 import endpoints.databases.dto.response.DatabaseResponse

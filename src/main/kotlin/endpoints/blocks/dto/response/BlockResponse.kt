@@ -1,9 +1,9 @@
 package endpoints.blocks.dto.response
 
-import endpoints.common.Color
-import endpoints.common.FileResponse
-import endpoints.common.IconObject
-import endpoints.common.RichTextObject
+import common.Color
+import common.FileResponse
+import common.IconObject
+import common.RichTextObject
 import endpoints.users.dto.response.PartialUserResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
