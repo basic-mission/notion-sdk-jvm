@@ -1,4 +1,4 @@
-package endpoints.common
+package common
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

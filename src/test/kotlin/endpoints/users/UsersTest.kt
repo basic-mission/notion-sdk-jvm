@@ -15,8 +15,8 @@ internal class UsersTest : AnnotationSpec() {
 	)
 
 	init {
-		System.getenv("notionApiKey") shouldNotBe null
-		System.getenv("notionApiKey") is String
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null
+		(System.getenv("notionApiKey") ?: Config.notionApiKey) shouldNotBe null
 	}
 
 	@Test

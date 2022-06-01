@@ -1,7 +1,7 @@
 package endpoints.search.dto.request
 
-import endpoints.common.PaginationRequest
-import endpoints.common.SortObject
+import common.PaginationRequest
+import common.SortObject
 import kotlinx.serialization.Serializable
 
 @Serializable

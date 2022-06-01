@@ -1,4 +1,4 @@
-package endpoints.common
+package common
 
 import endpoints.users.dto.response.UserResponse
 import kotlinx.serialization.SerialName
