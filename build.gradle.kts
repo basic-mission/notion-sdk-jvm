@@ -4,11 +4,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 	kotlin("jvm") version "1.6.10"
 	kotlin("plugin.serialization") version "1.6.10"
+
+	id("maven-publish")
+
 	application
+	idea
 }
 
-group = "me.ey611"
-version = "1.0-SNAPSHOT"
+group = "com.github.basic-mission"
+version = "0.0.1"
 
 val ktorVersion = "2.0.1"
 val kotestVersion = "5.3.0"
@@ -48,6 +52,38 @@ buildscript {
 		val kotlinVersion = "1.6.10"
 		classpath(kotlin("gradle-plugin", version = kotlinVersion))
 		classpath(kotlin("serialization", version = kotlinVersion))
+	}
+}
+
+publishing {
+	publications {
+		create<MavenPublication>("notionSdkJvm") {
+			from(components["java"])
+
+			groupId = "com.github.basic-mission"
+			artifactId = "notion-sdk-jvm"
+			version = "0.0.1"
+
+			pom {
+				name.set("notion-sdk-jvm")
+				description.set("unofficially notion sdk for jvm")
+				url.set("https://github.com/basic-mission/notion-sdk-jvm")
+
+				developers {
+					developer {
+						id.set("himitery")
+						name.set("Hakjin Lee")
+						email.set("himit0131@gmail.com")
+					}
+					developer {
+						id.set("govl6113")
+						name.set("Jihyun Bae")
+						email.set("govl6113@gmail.com")
+					}
+				}
+			}
+		}
+
 	}
 }
 
