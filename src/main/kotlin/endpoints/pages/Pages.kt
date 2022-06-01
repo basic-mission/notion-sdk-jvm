@@ -18,12 +18,4 @@ open class Pages(
 		logger.error { "[Pages.retrieve] ${error.message}" }
 		null
 	}
-
-	suspend fun create() {}
-
-	suspend fun update() {}
-
-	suspend fun archive() {}
-
-	suspend fun retrievePropertyItem() {}
 }
