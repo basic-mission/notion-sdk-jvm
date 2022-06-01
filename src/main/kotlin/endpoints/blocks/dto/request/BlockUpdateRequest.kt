@@ -1,10 +1,10 @@
 package endpoints.blocks.dto.request
 
+import common.Color
+import common.IconObject
+import common.RichTextObject
+import common.TextObject
 import endpoints.blocks.dto.response.*
-import endpoints.common.Color
-import endpoints.common.IconObject
-import endpoints.common.RichTextObject
-import endpoints.common.TextObject
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

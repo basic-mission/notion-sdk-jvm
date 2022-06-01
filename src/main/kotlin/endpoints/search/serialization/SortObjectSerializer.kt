@@ -1,6 +1,6 @@
 package endpoints.search.serialization
 
-import endpoints.common.SortObject
+import common.SortObject
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer
 import kotlinx.serialization.json.JsonElement

@@ -1,8 +1,8 @@
 package endpoints.pages.dto.response
 
 
-import endpoints.common.FileResponse
-import endpoints.common.IconObject
+import common.FileResponse
+import common.IconObject
 import endpoints.databases.dto.response.ParentType
 import endpoints.users.dto.response.PartialUserResponse
 import kotlinx.serialization.SerialName

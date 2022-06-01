@@ -1,9 +1,9 @@
 package endpoints.search.dto.response
 
-import endpoints.common.EmptyObject
-import endpoints.common.FileResponse
-import endpoints.common.IconObject
-import endpoints.common.RichTextObject
+import common.EmptyObject
+import common.FileResponse
+import common.IconObject
+import common.RichTextObject
 import endpoints.databases.dto.response.DatabaseParent
 import endpoints.databases.dto.response.DatabasePropertyResponse
 import endpoints.pages.dto.response.PageParent

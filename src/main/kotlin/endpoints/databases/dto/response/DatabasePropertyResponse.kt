@@ -1,7 +1,7 @@
 package endpoints.databases.dto.response
 
-import endpoints.common.Color
-import endpoints.common.EmptyObject
+import common.Color
+import common.EmptyObject
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

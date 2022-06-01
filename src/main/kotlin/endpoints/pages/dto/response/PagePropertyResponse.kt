@@ -1,7 +1,7 @@
 package endpoints.pages.dto.response
 
-import endpoints.common.ExternalType
-import endpoints.common.RichTextObject
+import common.ExternalType
+import common.RichTextObject
 import endpoints.databases.dto.response.PropertyType
 import endpoints.databases.dto.response.SelectObject
 import endpoints.databases.dto.response.SelectOptionsObject

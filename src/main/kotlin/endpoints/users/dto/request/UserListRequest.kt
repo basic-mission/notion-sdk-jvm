@@ -1,5 +1,5 @@
 package endpoints.users.dto.request
 
-import endpoints.common.PaginationRequest
+import common.PaginationRequest
 
 class UserListRequest : PaginationRequest()
