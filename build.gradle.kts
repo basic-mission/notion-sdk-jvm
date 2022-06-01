@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.github.basic-mission"
-version = "0.0.1"
+version = "0.0.3"
 
 val ktorVersion = "2.0.1"
 val kotestVersion = "5.3.0"
@@ -62,7 +62,7 @@ publishing {
 
 			groupId = "com.github.basic-mission"
 			artifactId = "notion-sdk-jvm"
-			version = "0.0.1"
+			version = "0.0.3"
 
 			pom {
 				name.set("notion-sdk-jvm")
