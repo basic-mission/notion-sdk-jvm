@@ -16,4 +16,8 @@ object Config {
 
 		const val pageId: String = ""
 	}
+
+	object Page {
+		const val pageId: String = ""
+	}
 }

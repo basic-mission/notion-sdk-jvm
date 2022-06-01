@@ -29,6 +29,7 @@ jobs:
           Blocks_pageId=${{ secrets.BLOCKS_PAGE_ID }} \
           Databases_databaseId=${{ secrets.DATABASES_DATABASE_ID }} \
           Databases_pageId=${{ secrets.DATABASES_PAGE_ID }} \
+          Pages_pageId=${{ secrets.PAGES_PAGE_ID }} \
           ./gradlew test
 
       - name: 4. build with gradle
