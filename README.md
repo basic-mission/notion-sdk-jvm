@@ -8,6 +8,7 @@
 </div>
 
 [![test](https://github.com/basic-mission/notion-sdk-jvm/actions/workflows/test.yml/badge.svg)](https://github.com/basic-mission/notion-sdk-jvm/actions/workflows/test.yml)
+[![](https://jitpack.io/v/basic-mission/notion-sdk-jvm.svg)](https://jitpack.io/#basic-mission/notion-sdk-jvm)
 
 ## Requirements
 
