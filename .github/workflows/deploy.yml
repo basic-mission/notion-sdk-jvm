@@ -2,11 +2,11 @@ name: deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   tag:
+    name: create new tag
     runs-on: ubuntu-latest
 
     steps:
