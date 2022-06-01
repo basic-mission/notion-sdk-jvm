@@ -21,7 +21,7 @@ fun getKtorClient(notionApiKey: String): HttpClient {
 		}
 		install(Logging) {
 			logger = Logger.DEFAULT
-			level = LogLevel.ALL
+			level = LogLevel.INFO
 		}
 		install(ContentNegotiation) {
 			json(Json {
